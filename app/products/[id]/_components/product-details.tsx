@@ -133,7 +133,7 @@ const ProductDetails = ({
         <p className="text-sm text-muted-foreground">{product.description}</p>
       </div>
 
-      <div className="mt-6 space-y-3 px-5">
+      <div className="mb-4 mt-6 space-y-3 px-5">
         <h3 className="font-semibold">Sucos</h3>
         <ProductList products={complementaryProducts} />
       </div>
