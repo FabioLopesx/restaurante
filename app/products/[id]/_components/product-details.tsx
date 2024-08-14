@@ -43,7 +43,7 @@ const ProductDetails = ({
     setQuantity((currentState) => (currentState > 1 ? currentState - 1 : 1));
 
   return (
-    <div className="pl-5">
+    <div className="relative z-50 mt-[-1.5rem] rounded-tl-3xl rounded-tr-3xl bg-white py-5 pl-5">
       {/* RESTAURANTE */}
       <div className="flex items-center gap-[6px] px-4">
         <div className="relative h-10 w-10">
