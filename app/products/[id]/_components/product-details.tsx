@@ -56,10 +56,8 @@ const ProductDetails = ({
         </div>
         <span className="text-muted-foreground">{product.restaurant.name}</span>
       </div>
-
       {/* NOME DO PRODUTO */}
       <h1 className="mb-2 mt-1 px-5 text-xl font-semibold">{product.name}</h1>
-
       {/* PREÇO DO PRODUTO E QUANTIDADE */}
       <div className="flex justify-between px-5">
         {/* PREÇO COM DESCONTO */}
@@ -96,7 +94,6 @@ const ProductDetails = ({
           </Button>
         </div>
       </div>
-
       {/* DADOS DA ENTREGA */}
       <Card className="mt-6 flex justify-around py-3">
         {/* CUSTO */}
@@ -127,16 +124,18 @@ const ProductDetails = ({
           </div>
         </div>
       </Card>
-
       <div className="mt-6 space-y-3">
         <h3 className="font-semibold">Sobre</h3>
         <p className="text-sm text-muted-foreground">{product.description}</p>
       </div>
-
       <div className="mb-4 mt-6 space-y-3 px-5">
         <h3 className="font-semibold">Sucos</h3>
         <ProductList products={complementaryProducts} />
       </div>
+      <div className="mt-6 px-5">
+        <Button className="w-full font-semibold">Adicionar a sacola</Button>
+      </div>
+      ;
     </div>
   );
 };
