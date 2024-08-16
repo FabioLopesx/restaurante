@@ -38,7 +38,7 @@ const RestaurantItem = ({ restaurant }: RestaurantItemProps) => {
           </Button>
         </div>
         {/* TEXTO */}
-        <div>
+        <div className="pb-5">
           <h3 className="text-sm font-semibold">{restaurant.name}</h3>
           {/* INFORMACOES DA ENTREGA */}
           <div className="flex gap-3">
