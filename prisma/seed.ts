@@ -7,7 +7,7 @@ const description =
 
 const createBurguers = async (
   desertsCategoryId: string,
-  juicesCategoryId: string
+  juicesCategoryId: string,
 ) => {
   const burguersCategory = await prismaClient.category.create({
     data: {
@@ -201,7 +201,7 @@ const createBurguers = async (
 
 const createPizzas = async (
   desertsCategoryId: string,
-  juicesCategoryId: string
+  juicesCategoryId: string,
 ) => {
   const pizzasCategory = await prismaClient.category.create({
     data: {
@@ -377,7 +377,7 @@ const createPizzas = async (
 
 const createJapanese = async (
   desertsCategoryId: string,
-  juicesCategoryId: string
+  juicesCategoryId: string,
 ) => {
   const japaneseCategory = await prismaClient.category.create({
     data: {
@@ -571,7 +571,7 @@ const createJapanese = async (
 
 const createBrazilian = async (
   desertsCategoryId: string,
-  juicesCategoryId: string
+  juicesCategoryId: string,
 ) => {
   const brazilianCategory = await prismaClient.category.create({
     data: {
