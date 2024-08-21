@@ -1,6 +1,6 @@
 import { Product } from "@prisma/client";
 
-export const calculateProductTotalPrice = (product: Product): Number => {
+export const calculateProductTotalPrice = (product: Product): number => {
   if (product.discountPercentage === 0) {
     return Number(product.price);
   }
@@ -10,7 +10,7 @@ export const calculateProductTotalPrice = (product: Product): Number => {
   return Number(product.price) - discont;
 };
 
-export const formartCurrency = (value: Number): string => {
+export const formartCurrency = (value: number): string => {
   return value.toLocaleString("pt-BR", {
     style: "currency",
     currency: "BRL",
