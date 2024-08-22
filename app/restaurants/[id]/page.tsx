@@ -107,8 +107,9 @@ const RestaurantPage = async ({ params: { id } }: RestaurantPageProps) => {
           <ProductList products={category.products} />
         </div>
       ))}
-
-      <CartBanner restaurant={restaurant} />
+      <div className="pt-[90px]">
+        <CartBanner restaurant={restaurant} />
+      </div>
     </div>
   );
 };
