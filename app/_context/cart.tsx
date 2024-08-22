@@ -22,6 +22,7 @@ interface IcartContext {
   products: CartProduct[];
   subTotalPrice: number;
   totalPrice: number;
+  totalQuantity: number;
   totalDiscount: number;
   addProductToCart: ({
     product,
@@ -49,6 +50,7 @@ export const CartContext = createContext<IcartContext>({
   products: [],
   subTotalPrice: 0,
   totalPrice: 0,
+  totalQuantity: 0,
   totalDiscount: 0,
   addProductToCart: () => {},
   decreaseProductQuantity: () => {},
@@ -73,7 +75,14 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
     );
   }, [products]);
 
-  const totalDiscount = totalPrice - subTotalPrice;
+  const totalQuantity = useMemo(() => {
+    return products.reduce((acc, product) => {
+      return acc + product.quantity;
+    }, 0);
+  }, [products]);
+
+  const totalDiscount =
+    subTotalPrice - totalPrice + Number(products?.[0]?.restaurant.deliveryFee);
 
   const decreaseProductQuantity = (productId: string) => {
     return setProducts((prev) =>
@@ -164,6 +173,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
         products,
         subTotalPrice,
         totalPrice,
+        totalQuantity,
         totalDiscount,
         addProductToCart,
         decreaseProductQuantity,
