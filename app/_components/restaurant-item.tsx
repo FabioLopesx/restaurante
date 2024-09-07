@@ -1,41 +1,72 @@
-import { Restaurant } from "@prisma/client";
+"use client";
+
+import { Restaurant, UserFavoriteRestaurant } from "@prisma/client";
 import { BikeIcon, HeartIcon, StarIcon, TimerIcon } from "lucide-react";
 import Image from "next/image";
 import { formartCurrency } from "../_helpers/price";
 import { Button } from "./ui/button";
 import Link from "next/link";
+import { toggleFavoriteRestaurant } from "../_actions/restaurant";
+import { toast } from "sonner";
 
 interface RestaurantItemProps {
+  userId?: string;
   restaurant: Restaurant;
+  className?: string;
+  UserFavoriteRestaurants: UserFavoriteRestaurant[];
 }
 
-const RestaurantItem = ({ restaurant }: RestaurantItemProps) => {
+const RestaurantItem = ({
+  restaurant,
+  userId,
+  UserFavoriteRestaurants,
+}: RestaurantItemProps) => {
+  const isFavorite = UserFavoriteRestaurants.some(
+    (fav) => fav.restaurantId === restaurant.id,
+  );
+
+  const handleFavoriteClick = async () => {
+    if (!userId) return;
+    try {
+      await toggleFavoriteRestaurant(userId, restaurant.id);
+      toast.success(
+        isFavorite
+          ? "Restaurante removido dos favoritos"
+          : "Restaurante adicionado aos favoritos",
+      );
+    } catch (error) {
+      toast.error("Erro ao favoritar restaurante");
+    }
+  };
+
   return (
-    <Link
-      className="min-w-[266px] max-w-[266px]"
-      href={`/restaurants/${restaurant.id}`}
-    >
+    <div className="min-w-[266px] max-w-[266px]">
       <div className="w-full space-y-3">
         {/* IMAGEM */}
         <div className="relative h-[136px] w-full">
-          <Image
-            src={restaurant.imageUrl}
-            fill
-            className="rounded-lg object-cover"
-            alt={restaurant.name}
-          />
+          <Link href={`/restaurants/${restaurant.id}`}>
+            <Image
+              src={restaurant.imageUrl}
+              fill
+              className="rounded-lg object-cover"
+              alt={restaurant.name}
+            />
+          </Link>
 
           <div className="absolute left-2 top-2 flex items-center gap-1 rounded-full bg-white px-2 py-[2px]">
             <StarIcon size={14} className="fill-yellow-400 text-yellow-500" />
             <span className="text-xs font-semibold">5,0</span>
           </div>
 
-          <Button
-            size="icon"
-            className="absolute right-2 top-2 h-7 w-7 rounded-full bg-gray-700"
-          >
-            <HeartIcon size={16} className="fill-white hover:fill-red-950" />
-          </Button>
+          {userId && (
+            <Button
+              size="icon"
+              className={`absolute right-2 top-2 h-7 w-7 rounded-full bg-gray-700 ${isFavorite && "bg-primary"}`}
+              onClick={handleFavoriteClick}
+            >
+              <HeartIcon size={16} className="fill-white hover:fill-red-950" />
+            </Button>
+          )}
         </div>
         {/* TEXTO */}
         <div className="pb-5">
@@ -59,7 +90,7 @@ const RestaurantItem = ({ restaurant }: RestaurantItemProps) => {
           </div>
         </div>
       </div>
-    </Link>
+    </div>
   );
 };
 

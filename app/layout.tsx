@@ -22,7 +22,6 @@ export default function RootLayout({
       <body className={inter.className}>
         <AuthProviders>
           <CartProvider>{children}</CartProvider>
-
           <Toaster />
         </AuthProviders>
       </body>
