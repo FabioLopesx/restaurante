@@ -57,7 +57,7 @@ const RestaurantImage = ({
         className={`absolute right-2 top-2 h-7 w-7 rounded-full bg-gray-700 ${isFavorite && "bg-primary"}`}
         onClick={handleFavoriteClick}
       >
-        <HeartIcon size={22} className="fill-white hover:fill-red-950" />
+        <HeartIcon size={16} className="fill-white hover:fill-red-950" />
       </Button>
     </div>
   );

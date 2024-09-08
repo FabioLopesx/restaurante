@@ -16,7 +16,7 @@ const RestaurantList = async () => {
         <RestaurantItem
           key={restaurant.id}
           restaurant={restaurant}
-          UserFavoriteRestaurants={userFavoriteRestaurants}
+          userFavoriteRestaurants={userFavoriteRestaurants}
         />
       ))}
     </div>
