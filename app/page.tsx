@@ -25,6 +25,19 @@ const Home = async () => {
       },
     },
   });
+
+  const burguesCategory = await db.category.findFirst({
+    where: {
+      name: "Hambúrgueres",
+    },
+  });
+
+  const pizzasCategory = await db.category.findFirst({
+    where: {
+      name: "Pizzas",
+    },
+  });
+
   return (
     <>
       <Header />
@@ -36,10 +49,12 @@ const Home = async () => {
       </div>
 
       <div className="px-5 pt-6">
-        <PromoBanner
-          src="/promo-banner-01.png"
-          alt="Até 30% de desconto em pizzas"
-        />
+        <Link href={`/categories/${pizzasCategory?.id}/products`}>
+          <PromoBanner
+            src="/promo-banner-01.png"
+            alt="Até 30% de desconto em pizzas"
+          />
+        </Link>
       </div>
 
       <div className="space-y-3 pl-5 pt-6">
@@ -58,9 +73,11 @@ const Home = async () => {
         <ProductList products={products} />
       </div>
 
-      <div className="px-5 pt-6">
-        <PromoBanner src={"/promo-banner-02.png"} alt="A partir de R$17,90" />
-      </div>
+      <Link href={`/categories/${burguesCategory?.id}/products`}>
+        <div className="px-5 pt-6">
+          <PromoBanner src={"/promo-banner-02.png"} alt="A partir de R$17,90" />
+        </div>
+      </Link>
 
       <div className="space-y-3 py-6 pl-5">
         <div className="flex items-center justify-between px-5">
